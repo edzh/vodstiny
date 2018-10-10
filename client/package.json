@@ -1,0 +1,32 @@
+{
+  "name": "destibates",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://edzh.github.io/destibates/",
+  "proxy": "http://localhost:8080",
+  "dependencies": {
+    "moment": "^2.22.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.3",
+    "recompose": "^0.30.0"
+  },
+  "scripts": {
+    "prestart": ".\\node_modules\\.bin\\tailwind build ./src/index.tailwind.css -c ./tailwind.js -o ./src/index.css",
+    "start": "react-scripts start",
+    "prebuild": ".\\node_modules\\.bin\\tailwind build ./src/index.tailwind.css -c ./tailwind.js -o ./src/index.css",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.6.6"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

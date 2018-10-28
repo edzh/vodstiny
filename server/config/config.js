@@ -6,7 +6,7 @@ var config = {
   prod: 'production',
   port: process.env.PORT || 8080,
 
-  expireTime: 24 * 60 * 10,
+  expireTime: 24 * 60 * 60 * 10,
   secrets: {
     jwt : process.env.JWT || 'gumball'
   }

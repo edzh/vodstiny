@@ -7,8 +7,14 @@ var TimestampSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'vod'
   },
-  vodId: String,
-  timestamp: String,
+  vodId: {
+    type: String,
+    required: true
+  },
+  timestamp: {
+    type:String,
+    required: true
+  },
   topic: String,
   category: String
 

@@ -19,7 +19,6 @@ exports.params = function(req, res, next, id) {
 
 exports.get = function(req, res, next) {
   User.find({})
-    .populate('timestamp')
     .exec()
     .then(function(vods) {
       res.json(vods);
@@ -53,7 +52,7 @@ exports.post = function(req, res, next) {
   var newUser = new User(req.body);
   newUser.save(function(err, user) {
     if(err) {
-      next(err);
+      return next(err);
     }
 
     var token = signToken(user._id);

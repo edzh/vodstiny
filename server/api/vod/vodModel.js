@@ -8,7 +8,7 @@ var VodSchema = new Schema({
     unique: true,
     required: true
   },
-  date: String,
+  date: Date,
   timestamps: [{
     type: Schema.Types.ObjectId,
     ref: 'timestamp'

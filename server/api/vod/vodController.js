@@ -35,7 +35,14 @@ exports.put = function(req, res, next) {
 };
 
 exports.post = function(req, res, next) {
-
+  var newvod = req.body;
+  Vod.create(newvod)
+    .then(function(vod) {
+      res.json(vod);
+    }, function(err) {
+      logger.error(err);
+      next(err);
+    });
 };
 
 exports.delete = function(req, res, next) {

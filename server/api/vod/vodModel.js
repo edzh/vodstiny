@@ -12,7 +12,7 @@ var VodSchema = new Schema({
   timestamps: [{
     type: Schema.Types.ObjectId,
     ref: 'timestamp'
-  }],
+  }]
 
 });
 

@@ -6,6 +6,7 @@ var User = require('../api/user/userModel');
 
 exports.decodeToken = function() {
   return function(req, res, next) {
+    console.log(req);
     if (req.query && req.query.hasOwnProperty('access_token')) {
       req.headers.authorization = 'Bearer ' + req.query.access_token;
     };

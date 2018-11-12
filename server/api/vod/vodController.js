@@ -4,7 +4,7 @@ exports.params = function(req, res, next, id) {
   Vod.findById(id)
     .then(function(vod) {
       if (!vod) {
-        next(new Error('No category with that id'));
+        next(new Error('No vod with that id'));
       } else {
         req.vod = vod;
         next();
@@ -16,7 +16,7 @@ exports.params = function(req, res, next, id) {
 
 exports.get = function(req, res, next) {
   Vod.find({})
-    .populate('timestamp')
+    .populate('timestamps')
     .exec()
     .then(function(vods) {
       res.json(vods);
@@ -31,20 +31,30 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.put = function(req, res, next) {
-
+  var newVod = new Vod(req.body);
+  newVod.save(function(err, user) {
+    if (err) {
+      return next(err);
+    }
+  })
 };
 
 exports.post = function(req, res, next) {
-  var newvod = req.body;
-  Vod.create(newvod)
+  var newVod = req.body;
+  Vod.create(newVod)
     .then(function(vod) {
       res.json(vod);
     }, function(err) {
-      logger.error(err);
       next(err);
     });
 };
 
 exports.delete = function(req, res, next) {
-
+  req.vod.remove(function(err, removed) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(removed);
+    }
+  })
 };

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "start": "yarn run server",
     "server": "nodemon ./server/server.js",
     "client": "node start-client.js"
   },

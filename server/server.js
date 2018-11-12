@@ -27,17 +27,6 @@ app.use('/api/timestamps', TimestampRouter);
 app.use('/api/users/', UserRouter);
 app.use('/auth', auth);
 
-// app.get('/api/videoIds', function(req, res) {
-//   res.json(videoIds);
-// });
-
-// app.get('/api/videoIds/:videoId', function(req, res) {
-//   var video = Object.keys(videoIds.videoIds).filter(videoId => videoId === req.params.videoId)
-//   res.json(videoIds.videoIds[video])
-// });
-
-
-
 app.listen(port, function() {
   console.log(`listening on http://localhost:${port}`);
 });

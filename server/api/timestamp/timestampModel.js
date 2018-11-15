@@ -5,7 +5,8 @@ var Schema = mongoose.Schema;
 var TimestampSchema = new Schema({
   vod: {
     type: Schema.Types.ObjectId,
-    ref: 'vod'
+    ref: 'vod',
+    required: true
   },
   vodId: {
     type: String,
@@ -13,6 +14,11 @@ var TimestampSchema = new Schema({
   },
   timestamp: {
     type:String,
+    required: true
+  },
+  uid: {
+    type: Schema.Types.ObjectId,
+    ref: 'user',
     required: true
   },
   topic: String,

@@ -11,6 +11,7 @@ var VodSchema = new Schema({
   date: Date,
   timestamps: [{
     type: Schema.Types.ObjectId,
+    unique: true,
     ref: 'timestamp'
   }]
 

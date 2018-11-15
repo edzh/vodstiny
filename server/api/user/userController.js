@@ -37,7 +37,7 @@ exports.put = function(req, res, next) {
 
   var update = req.body;
 
-  _.merge(user.update);
+  _.merge(user, update);
 
   user.save(function(err, saved) {
     if (err) {

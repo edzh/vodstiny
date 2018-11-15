@@ -15,11 +15,18 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-
+  Timestamp.find({})
+    .exec()
+    .then(function(timestamps) {
+      res.json(timestamps);
+    }, function(err) {
+      next(err);
+    })
 };
 
 exports.getOne = function(req, res, next) {
-
+  var timestamp = req.timestamp;
+  res.json(timestamp);
 };
 
 exports.put = function(req, res, next) {

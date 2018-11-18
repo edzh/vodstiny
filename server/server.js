@@ -5,8 +5,8 @@ var cors = require('cors')
 var config = require('./config/config')
 
 var VodRouter = require('./api/vod/vodRouter');
-var TimestampRouter = require('./api/timestamp/TimestampRouter');
-var UserRouter = require('./api/user/UserRouter');
+var TimestampRouter = require('./api/timestamp/timestampRouter');
+var UserRouter = require('./api/user/userRouter');
 var auth = require('./auth/routes')
 
 require('mongoose').connect(config.db.url);

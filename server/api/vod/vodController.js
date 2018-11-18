@@ -17,6 +17,19 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
+  // Get vod by vodId
+  if (req.query.vodId) {
+    Vod.find({vodId: req.query.vodId})
+      .populate('timestamps')
+      .exec()
+      .then(function(vods) {
+        res.json(vods);
+      }, function(err) {
+        next(err);
+      });
+  }
+
+  // Get all vods
   Vod.find({})
     .populate('timestamps')
     .exec()
@@ -33,34 +46,6 @@ exports.getOne = function(req, res, next) {
 };
 
 exports.put = function(req, res, next) {
-  // var vod = req.vod;
-  // // console.log(vod);
-  // // var timestamps = vod.timestamps
-  // // console.log(timestamps);
-  // // var update = timestamps.push(req.body);
-  // // console.log(update);
-  // console.log(vod.timestamps);
-  // console.log(req.body.timestamp)
-  // console.log(vod.timestamps.some(function(timestamp){return timestamp === req.body.timestamp}))
-  // if (!vod.timestamps.includes(req.body.timestamp)) {
-  //   vod.timestamps.push(req.body.timestamp)
-  // } else {
-  //   next(new Error('Cannot add duplicate vod'))
-  // }
-  // // console.log(update);
-  // // console.log(vod.update());
-  // // _.merge(vod.timestamps, update);
-  // // console.log(update);
-  // // console.log(vod);
-
-  // vod.save(function(err, saved) {
-  //   if (err) {
-  //     next(err);
-  //   } else {
-  //     console.log(saved)
-  //     res.json(saved)
-  //   }
-  // })
   var vod = req.vod;
 
   Vod.updateOne({_id: req.vod._id},{$addToSet: {timestamps: [req.body.timestamp]}})

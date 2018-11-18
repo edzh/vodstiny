@@ -13,7 +13,12 @@ var TimestampSchema = new Schema({
     required: true
   },
   timestamp: {
-    type:String,
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /^[0-9]{2}h[0-9]{2}m[0-9]{2}s$/.test(v)
+      }
+    },
     required: true
   },
   uid: {

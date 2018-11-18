@@ -39,7 +39,7 @@ exports.post = function(req, res, next) {
     .then(function(timestamp) {
       res.json(timestamp);
     }, function(err) {
-      logger.error(err);
+      // logger.error(err);
       next(err);
     });
 };

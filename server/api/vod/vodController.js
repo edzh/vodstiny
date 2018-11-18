@@ -62,6 +62,7 @@ exports.post = function(req, res, next) {
     .then(function(vod) {
       res.json(vod);
     }, function(err) {
+      console.log(newVod);
       next(err);
     });
 };

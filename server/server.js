@@ -1,18 +1,17 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var cors = require('cors')
+var config = require('./config/config')
 
 var VodRouter = require('./api/vod/vodRouter');
 var TimestampRouter = require('./api/timestamp/TimestampRouter');
 var UserRouter = require('./api/user/UserRouter');
 var auth = require('./auth/routes')
 
-var app = express();
-var port = 8080;
+require('mongoose').connect(config.db.url);
 
-const db = mongoose.connect('mongodb://localhost:27017/vodstiny')
+var app = express();
 
 app.use(express.static('client'));
 app.use(morgan('dev'));
@@ -27,6 +26,6 @@ app.use('/api/timestamps', TimestampRouter);
 app.use('/api/users/', UserRouter);
 app.use('/auth', auth);
 
-app.listen(port, function() {
-  console.log(`listening on http://localhost:${port}`);
+app.listen(config.port, function() {
+  console.log(`listening on http://localhost:${config.port}`);
 });

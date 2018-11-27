@@ -17,20 +17,7 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-  // Get vod by vodId
-  if (req.query.vodId) {
-    Vod.find({vodId: req.query.vodId})
-      .populate('timestamps')
-      .exec()
-      .then(function(vods) {
-        res.json(vods);
-      }, function(err) {
-        next(err);
-      });
-  }
-
-  // Get all vods
-  Vod.find({})
+  Vod.find(req.query)
     .populate('timestamps')
     .exec()
     .then(function(vods) {

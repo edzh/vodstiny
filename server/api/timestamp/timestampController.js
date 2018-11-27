@@ -15,7 +15,7 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-  Timestamp.find({})
+  Timestamp.find(req.query)
     .exec()
     .then(function(timestamps) {
       res.json(timestamps);

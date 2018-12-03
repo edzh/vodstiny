@@ -17,8 +17,17 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-  Vod.find(req.query)
-    .populate('timestamps')
+  let query = {}
+
+  if (req.query.date) {
+    query = req.query;
+    query.date = {
+      '$gte': new Date(query.date),
+      '$lte': new Date(+new Date(query.date) + 24*60*60*1000)
+    };
+  }
+  Vod.find(query)
+    // .populate('timestamps')
     .exec()
     .then(function(vods) {
       res.json(vods);

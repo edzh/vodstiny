@@ -15,7 +15,10 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
+  // var filter = {"vodId": JSON.parse(req.query.vodId)}
+  // console.log(filter)
   Timestamp.find(req.query)
+    .sort('timestamp')
     .exec()
     .then(function(timestamps) {
       res.json(timestamps);
@@ -39,7 +42,6 @@ exports.post = function(req, res, next) {
     .then(function(timestamp) {
       res.json(timestamp);
     }, function(err) {
-      // logger.error(err);
       next(err);
     });
 };

@@ -31,4 +31,12 @@ var TimestampSchema = new Schema({
 
 });
 
+
+
+// TimestampSchema.pre('save', function(next) {
+//   this.sort(function(a, b) {
+//     return b.timestamp - a.timestamp
+//   })
+// })
+
 module.exports = mongoose.model('timestamp', TimestampSchema);

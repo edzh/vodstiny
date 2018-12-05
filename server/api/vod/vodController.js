@@ -19,15 +19,22 @@ exports.params = function(req, res, next, id) {
 exports.get = function(req, res, next) {
   let query = {}
 
-  if (req.query.date) {
-    query = req.query;
-    query.date = {
-      '$gte': new Date(query.date),
-      '$lte': new Date(+new Date(query.date) + 24*60*60*1000)
-    };
+  // if (req.query.date) {
+  //   query = req.query;
+  //   query.date = {
+  //     '$gte': new Date(query.date),
+  //     '$lte': new Date(+new Date(query.date) + 24*60*60*1000)
+  //   };
+  // }
+
+  if (req.query.month) {
+    // query = req.query;
+    query = {"$expr": { "$eq": [{"$month": "$date"}, parseInt(req.query.month)] }}
   }
+  console.log(query)
+
   Vod.find(query)
-    // .populate('timestamps')
+    .populate('timestamps')
     .exec()
     .then(function(vods) {
       res.json(vods);

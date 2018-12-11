@@ -30,7 +30,7 @@ exports.get = function(req, res, next) {
   if (req.query.month) {
     // query = req.query;
     query = {"$expr": { "$eq": [{"$month": "$date"}, parseInt(req.query.month)] }}
-  }
+  } else { query = req.query }
   console.log(query)
 
   Vod.find(query)
